@@ -3,6 +3,8 @@ from tsfresh.utilities.dataframe_functions import impute
 from tsfresh.feature_selection.relevance import calculate_relevance_table
 import pandas as pd
 import numpy as np
+import warnings
+warnings.filterwarnings('ignore')
 
 class FeatureExtractor():
     def __init__(self):
