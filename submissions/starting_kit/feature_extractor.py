@@ -20,7 +20,7 @@ class FeatureExtractor():
         X_tsfresh=X_tsfresh.drop(columns='InternalTemperature').astype('float64')#Drop deficient column and force column type
         
         extracted_features = extract_features(X_tsfresh, column_id="Key")
-        #Imputation to remove unusable features creating nans 
+        #Imputation to correct values equal to inf or nan
         extracted_features=impute(extracted_features)  
         #Calculation of p_values to evaluate features usefullness
         df_p_values=calculate_relevance_table(extracted_features, y, ml_task='classification')
