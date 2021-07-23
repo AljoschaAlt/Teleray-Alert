@@ -11,7 +11,7 @@ import numpy as np
 problem_title = 'Teleray alert: Radiological events classification'
 
 #lalel names for the classification
-_prediction_label_names = ['Weather','AtmosphericRejection','ElectronicPeak1', 'ElectronicPeak2', 'ElectronicPeak3']
+_prediction_label_names = ['AtmosphericRejection','ElectronicPeak1', 'ElectronicPeak2', 'ElectronicPeak3', 'Weather']
 
 Predictions = rw.prediction_types.make_multiclass(
 label_names=_prediction_label_names)
@@ -33,19 +33,10 @@ class weighted_ROCAUC(BaseScoreType):
             Weighted average AUC:
             Calculate metrics for each label, and find their average, weighted by support. 
         """
-        print('predictions')
-        print(predictions)
-        print('-')
-        print(Predictions.label_names)
-        print('label')
-        print(Predictions.y_pred_label)
-        print('index')
-        print(Predictions.y_pred_label_index)
         y_proba = predictions.y_pred #shape (n_samples, n_classes)
         y_true = ground_truths.y_pred_label_index #shape (n_samples, 1)
         y_true= label_binarize(y_true, classes=np.unique(y_true)) #shape (n_samples, n_classes)
         self.check_y_pred_dimensions(y_true, y_proba)
-        print('----------')
         return self.__call__(y_true, y_proba)
 
     def __call__(self, y_true, y_proba):

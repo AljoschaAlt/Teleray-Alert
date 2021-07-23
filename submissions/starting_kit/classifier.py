@@ -7,7 +7,7 @@ class Classifier(BaseEstimator):
     def __init__(self):
         self.n_estimators = 100
         self.clf = Pipeline([
-            ('normalisation', StandardScaler()),
+            ('normalization', StandardScaler()),
             ('clf', RandomForestClassifier(
                 n_estimators=self.n_estimators, random_state=2))
         ])
