@@ -3,14 +3,21 @@ from sklearn.pipeline import Pipeline
 from sklearn.base import BaseEstimator
 from sklearn.preprocessing import StandardScaler
 
+
 class Classifier(BaseEstimator):
     def __init__(self):
         self.n_estimators = 100
-        self.clf = Pipeline([
-            ('normalization', StandardScaler()),
-            ('clf', RandomForestClassifier(
-                n_estimators=self.n_estimators, random_state=2))
-        ])
+        self.clf = Pipeline(
+            [
+                ("normalization", StandardScaler()),
+                (
+                    "clf",
+                    RandomForestClassifier(
+                        n_estimators=self.n_estimators, random_state=2
+                    ),
+                ),
+            ]
+        )
 
     def fit(self, X, y):
         self.clf.fit(X, y)
